@@ -37,13 +37,14 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2.js"></script>
+        <script src="data/container_sites_NOT_container_1.js"></script>
+        <script src="data/zhovti_vody_waste_map_final_updatedcontainer_sites_2.js"></script>
         <script src="data/zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3.js"></script>
         <script src="data/zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[48.33576083766418,33.50229079970581],[48.34163191484292,33.51134010439467]]);
+        }).fitBounds([[48.329810080270235,33.48131321318942],[48.3562282100396,33.52241155961974]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -148,20 +149,56 @@
         });
         layer_EsriWorldImagery_0;
         map.addLayer(layer_EsriWorldImagery_0);
-        map.createPane('pane_OpenStreetMap_1');
-        map.getPane('pane_OpenStreetMap_1').style.zIndex = 401;
-        var layer_OpenStreetMap_1 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            pane: 'pane_OpenStreetMap_1',
-            opacity: 1.0,
+        function pop_container_sites_NOT_container_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_container_sites_NOT_container_1_0() {
+            return {
+                pane: 'pane_container_sites_NOT_container_1',
+                radius: 10.000000000000002,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_container_sites_NOT_container_1');
+        map.getPane('pane_container_sites_NOT_container_1').style.zIndex = 401;
+        map.getPane('pane_container_sites_NOT_container_1').style['mix-blend-mode'] = 'normal';
+        var layer_container_sites_NOT_container_1 = new L.geoJson(json_container_sites_NOT_container_1, {
             attribution: '',
-            minZoom: 1,
-            maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 19
+            interactive: true,
+            dataVar: 'json_container_sites_NOT_container_1',
+            layerName: 'layer_container_sites_NOT_container_1',
+            pane: 'pane_container_sites_NOT_container_1',
+            onEachFeature: pop_container_sites_NOT_container_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_container_sites_NOT_container_1_0(feature));
+            },
         });
-        layer_OpenStreetMap_1;
-        map.addLayer(layer_OpenStreetMap_1);
-        function pop_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2(feature, layer) {
+        bounds_group.addLayer(layer_container_sites_NOT_container_1);
+        map.addLayer(layer_container_sites_NOT_container_1);
+        function pop_zhovti_vody_waste_map_final_updatedcontainer_sites_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -222,42 +259,42 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2_0() {
+        function style_zhovti_vody_waste_map_final_updatedcontainer_sites_2_0() {
             return {
-                pane: 'pane_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2',
-                radius: 10.000000000000005,
+                pane: 'pane_zhovti_vody_waste_map_final_updatedcontainer_sites_2',
+                radius: 8.0,
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(128,17,25,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1,
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,158,23,1.0)',
+                fillColor: 'rgba(219,30,42,1.0)',
                 interactive: true,
             }
         }
-        map.createPane('pane_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2');
-        map.getPane('pane_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2').style.zIndex = 402;
-        map.getPane('pane_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2').style['mix-blend-mode'] = 'normal';
-        var layer_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2 = new L.geoJson(json_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2, {
+        map.createPane('pane_zhovti_vody_waste_map_final_updatedcontainer_sites_2');
+        map.getPane('pane_zhovti_vody_waste_map_final_updatedcontainer_sites_2').style.zIndex = 402;
+        map.getPane('pane_zhovti_vody_waste_map_final_updatedcontainer_sites_2').style['mix-blend-mode'] = 'normal';
+        var layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2 = new L.geoJson(json_zhovti_vody_waste_map_final_updatedcontainer_sites_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2',
-            layerName: 'layer_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2',
-            pane: 'pane_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2',
-            onEachFeature: pop_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2,
+            dataVar: 'json_zhovti_vody_waste_map_final_updatedcontainer_sites_2',
+            layerName: 'layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2',
+            pane: 'pane_zhovti_vody_waste_map_final_updatedcontainer_sites_2',
+            onEachFeature: pop_zhovti_vody_waste_map_final_updatedcontainer_sites_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2_0(feature));
+                return L.circleMarker(latlng, style_zhovti_vody_waste_map_final_updatedcontainer_sites_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2);
-        map.addLayer(layer_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2);
+        bounds_group.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2);
+        map.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2);
         function pop_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -322,7 +359,7 @@
         function style_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3_0() {
             return {
                 pane: 'pane_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3',
-                radius: 4.0,
+                radius: 12.000000000000005,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -331,7 +368,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(114,155,111,1.0)',
+                fillColor: 'rgba(251,154,153,1.0)',
                 interactive: true,
             }
         }
@@ -419,7 +456,7 @@
         function style_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4_0() {
             return {
                 pane: 'pane_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4',
-                radius: 4.0,
+                radius: 12.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -428,7 +465,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(164,113,88,1.0)',
+                fillColor: 'rgba(178,223,138,1.0)',
                 interactive: true,
             }
         }
@@ -508,8 +545,8 @@
         var overlaysTree = [
             {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4.png" /> zhovti_vody_waste_map_final_updated — container_sites_1_1_m3', layer: layer_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4},
             {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3.png" /> zhovti_vody_waste_map_final_updated — container_sites_0_8_m3', layer: layer_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3},
-            {label: '<img src="legend/zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2.png" /> zhovti_vody_waste_map_final_updated — blue_temporary_waste_points 42', layer: layer_zhovti_vody_waste_map_final_updatedblue_temporary_waste_points42_2},
-            {label: "OpenStreetMap", layer: layer_OpenStreetMap_1, radioGroup: 'bm' },
+            {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_2.png" /> zhovti_vody_waste_map_final_updated —container_sites  (Контейнер КрГаб)', layer: layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2},
+            {label: '<img src="legend/container_sites_NOT_container_1.png" /> container_sites_NOT_container ()', layer: layer_container_sites_NOT_container_1},
             {label: "Esri World Imagery", layer: layer_EsriWorldImagery_0, radioGroup: 'bm' },]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
