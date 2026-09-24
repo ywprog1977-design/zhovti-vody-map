@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -37,13 +39,14 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
         <script src="data/zhovti_vody_waste_map_final_updatedcontainer_sites_2.js"></script>
         <script src="data/zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3.js"></script>
         <script src="data/zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[48.335333889099374,33.49971008988851],[48.34194345548413,33.50998467649609]]);
+        }).fitBounds([[48.34178683068829,33.497211924394755],[48.3550059634578,33.51776109760991]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -256,8 +259,12 @@
                 return L.circleMarker(latlng, style_zhovti_vody_waste_map_final_updatedcontainer_sites_2_0(feature));
             },
         });
+        var cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_2 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_2.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2);
+
         bounds_group.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2);
-        map.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2);
+        cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_2.addTo(map);
         function pop_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -353,8 +360,12 @@
                 return L.circleMarker(latlng, style_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3_0(feature));
             },
         });
+        var cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3);
+
         bounds_group.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3);
-        map.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3);
+        cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3.addTo(map);
         function pop_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -450,8 +461,12 @@
                 return L.circleMarker(latlng, style_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4_0(feature));
             },
         });
+        var cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4);
+
         bounds_group.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4);
-        map.addLayer(layer_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4);
+        cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4.addTo(map);
         const url = {"Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
         "France BAN": "https://api-adresse.data.gouv.fr/search/?"}
         var photonControl = L.control.photon({
@@ -506,9 +521,9 @@
             }
         });
         var overlaysTree = [
-            {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4.png" /> zhovti_vody_waste_map_final_updated — container_sites_1_1_m3', layer: layer_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4},
-            {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3.png" /> zhovti_vody_waste_map_final_updated — container_sites_0_8_m3', layer: layer_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3},
-            {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_2.png" /> zhovti_vody_waste_map_final_updated —container_sites  (Контейнер КрГаб)', layer: layer_zhovti_vody_waste_map_final_updatedcontainer_sites_2},
+            {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4.png" /> zhovti_vody_waste_map_final_updated — container_sites_1_1_m3', layer: cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_1_1_m3_4},
+            {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3.png" /> zhovti_vody_waste_map_final_updated — container_sites_0_8_m3', layer: cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_0_8_m3_3},
+            {label: '<img src="legend/zhovti_vody_waste_map_final_updatedcontainer_sites_2.png" /> zhovti_vody_waste_map_final_updated —container_sites  (Контейнер КрГаб)', layer: cluster_zhovti_vody_waste_map_final_updatedcontainer_sites_2},
             {label: "OpenStreetMap", layer: layer_OpenStreetMap_1, radioGroup: 'bm' },
             {label: "Esri World Imagery", layer: layer_EsriWorldImagery_0, radioGroup: 'bm' },]
         var lay = L.control.layers.tree(null, overlaysTree,{
